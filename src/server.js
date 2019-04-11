@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());
+
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -25,7 +25,7 @@ app.use((req,res, next) => {
     return next();
 });
 
-
+app.use(cors());
 app.use(express.json()); //para a view se comunicar utilizando o formato json
 app.use(express.urlencoded({extended: true})); //para envio de arquivos entre view e controller
 app.use('/files', express.static(path.resolve(__dirname, '..', 'temp')));
